@@ -54,7 +54,8 @@ function getWeather(cityName) {
           .html("Wind speed: " + data.wind.speed + "MPH");
 
           $(".currentWeather").html("").append(currentTitle, weatherIcon, temperature, windSpeed, humidity)
-
+          
+          callUV(data.coord.lat, data.coord.lon);
 
       })
     
@@ -94,13 +95,37 @@ function getWeather(cityName) {
 
 // UV Index
 function callUV(lat, lon) {
-    var uvURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat "&lon=" + lon + "&appid=de7012882f4c3c7eb567c8837eb90a14"
+    var uvURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=de7012882f4c3c7eb567c8837eb90a14"
     fetch(uvURL)
      .then(function(response) {
         return response.json();
      })
      .then(function(data) {
         console.log(data)
+        // data.current.uvi
+        var uvEl = document.createElement("p")
+        $(uvEl).text("UV index: ")
+        var uvColor = document.createElement("button")
+        $(uvColor).attr("type", "button")
+        .addClass("btn btn-sm").html(data.current.uvi)
+
+        if (data.current.uvi >= 0 && data.current.uvi < 3) {
+            $(uvColor).addClass("bg-green")
+        }
+        else if (data.current.uvi >=3 && data.current.uvi < 6) {
+            $(uvColor).addClass("bg-yellow")
+        }
+        else if (data.current.uvi >= 6 && data.current.uvi < 8) {
+            $(uvColor).addClass("bg-orange")
+        }
+        else if (data.current.uvi >= 8 && data.current.uvi < 11) {
+            $(uvColor).addClass("bg-red")
+        }
+        else {
+            $(uvColor).addClass("bg-violet")
+        }
+        $(".currentWeather").append(uvEl)
+        uvEl.append(uvColor)
      })
 
 }
