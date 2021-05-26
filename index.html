@@ -12,42 +12,45 @@
     <h1 class="app-title">Weather DashBoard</h1>
 </header>
 <body>
-    <main class="flex-row justify-space-between" id="city-searchbox">
-        <div class="col-12 col-md-4">
-            <div class="card">
-                <h3 class="card-header text-uppercase">Search By City</h3>
-                <form id="city-form" class="card-body">
-                    <input name="city" id="city-search" type="text" autofocus="true" class="form-input" />
-                    <button type="search" class="btn searchBtn" id="search-button"><i class="fas fa-search">Search City</i></button>
-                    <button type="clear" class="btn clearBtn" id="clear-button">Clear History</button>
-                </form>
+  
+      <!-- Main body -->
+    <main class="container">
+        <section class="row">
+            <!-- Search API -->
+            <div class="col-12 col-md-3">
+            <h2>Search for a city:</h2>
+            <!-- Search Button -->
+            <div class="input-group my-3">
+                <input type="text" class="form-control">
+                <div class="input-group-append">
+                <button class="btn btn-primary" id="search-button">Search</button>
+                </div>
+                
+                <!-- clear button -->
+                <button class="btn" id="clear-button">Clear history</button>
             </div>
-            <form id="history"></form>
-        </div>
-        <div class="col-12 col-md-8">
-            <h3>Current Weather Search Results:</h3>
-            <div class="card" id="current-weather">
-
-                <h3 id="city-name" class="city-name align-middle"></h3>
-                <img id="current-pic" alt="">
-                <p id="temperature"></p>
-                <p id="humidity"></p>
-                <p id="wind-speed"></p>
-                <p id="UV-index"></p>
-
+            <!-- Search History -->
+            <ul class="list-group mb-3">
+            </ul>
             </div>
-            <div class="card" id="five-day">
-                <h4>5 Day Forecast</h4>
-            </div>
-        </div>
 
+            <div class="col-12 col-md-8">
+            <!-- Today's weather -->
+            <div class="row">
+                <div class="card col-12">
+                <div class="mainResult container">
+                    <h2 class="cityName display-5"></h2>
+                </div>
+                </div>
+            </div>
+
+            <!-- 5-Day Forecast -->
+            <h4>5-Day Forecast:</h4>
+            <div class="forecast row card-deck">
+            </div>
+            </div>
+        </section>
     </main>
-
-    <!-- search button -->
-    <!-- clear button -->
-
-    <!-- today's weather -->
-    <!-- 5-day forecast -->
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
