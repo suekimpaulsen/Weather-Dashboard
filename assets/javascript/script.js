@@ -8,18 +8,16 @@ if(!searchHistory){
   generateHistory();
 }
 
+searchBtn.on("click", searchCity)
+
 // Search Function
 function searchCity() {
     var cityName = inputEl.val();
     getWeather(cityName);
-    localStorage.setItem("search", JSON.stringify(searchHistory));
+    searchHistory.unshift(cityName);
+    localStorage.setItem("search",JSON.stringify(searchHistory));
     generateHistory();
-    console.log(cityName)
-    console.log(searchHistory)
 }
-searchBtn.on("click", searchCity)
-
-
  
 function getWeather(cityName) {
      var currentDayURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=de7012882f4c3c7eb567c8837eb90a14";
@@ -127,11 +125,12 @@ function callUV(lat, lon) {
 
 }
 
-function generateHistory() {
-    for(i = 0; i < searchHistory.length; i++) {
-        var historyEl = document.createElement("li")
-        $(historyEl).addClass("list-group-item").text(searchHistory[i])
-        $("ul").append(historyEl)
+function generateHistory(){
+    $("ul").html("");
+    for(i = 0; i < searchHistory.length; i++){
+      var historyEl = document.createElement("li")
+      $(historyEl).addClass("list-group-item").text(searchHistory[i]);
+      $("ul").append(historyEl)
     }
 }
 
