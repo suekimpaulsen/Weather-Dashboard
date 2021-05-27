@@ -1,12 +1,11 @@
 var searchBtn = $("#search-button");
 var inputEl = $(".form-control");
-var cityName = "";
+var cityName = ""
 var searchHistory = JSON.parse(localStorage.getItem("search"));
 if(!searchHistory){
   var searchHistory = [];
 }else{
-//   generateHistory();
-    console.log("else")
+  generateHistory();
 }
 
 // Search Function
@@ -14,8 +13,9 @@ function searchCity() {
     var cityName = inputEl.val();
     getWeather(cityName);
     localStorage.setItem("search", JSON.stringify(searchHistory));
-    // generateHistory();
+    generateHistory();
     console.log(cityName)
+    console.log(searchHistory)
 }
 searchBtn.on("click", searchCity)
 
@@ -28,7 +28,6 @@ function getWeather(cityName) {
          return response.json();
      })
       .then(function(data) {
-          console.log(data);
           //append to .currentweather
           var currentTitle = document.createElement("h2")
           var weatherIcon = document.createElement("img")
@@ -65,7 +64,6 @@ function getWeather(cityName) {
          return response.json();
      })
      .then(function(data) {
-         console.log(data);
          $(".forecast").html("")
          for (i = 0; i < 5; i++) {
              var card = $("<div>");
@@ -101,7 +99,6 @@ function callUV(lat, lon) {
         return response.json();
      })
      .then(function(data) {
-        console.log(data)
         // data.current.uvi
         var uvEl = document.createElement("p")
         $(uvEl).text("UV index: ")
@@ -129,4 +126,12 @@ function callUV(lat, lon) {
      })
 
 }
-// uvURL = https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
+
+function generateHistory() {
+    for(i = 0; i < searchHistory.length; i++) {
+        var historyEl = document.createElement("li")
+        $(historyEl).addClass("list-group-item").text(searchHistory[i])
+        $("ul").append(historyEl)
+    }
+}
+
