@@ -1,22 +1,28 @@
-*{
+* {
   box-sizing: content-box;
 }
 
 .jumbotron {
+  padding: 15px;
+}
+
+.white-card {
   padding: 10px;
+  background-color: white;
+  border: 2px;
+  border-color: black;
+  border-style: solid;
 }
 
-.icon {
-  position: absolute;
-  margin-top: -90px;
-  margin-left:-40px;
+.weather-icon {
+  width: 60px;
 }
 
-.iconSmall{
+.icon-small {
   width: 40px;
 }
 
-h5{
+h5 {
   font-size: 80%;
 }
 
@@ -26,4 +32,26 @@ h5{
 
 .cityName{
   padding-left:50px;
+}
+
+.searchBtn, .clearBtn i:hover {
+ transition: all .3s ease-in-out;
+}
+
+.btn-yellow {
+  color: black;
+  background-color: yellow;
+  border-color: yellow;
+}
+
+.btn-orange {
+  color: #fff;
+  background-color: orange;
+  border-color: orange;
+}
+
+.btn-violet {
+  color: #fff;
+  background-color: purple;
+  border-color: purple;
 }
