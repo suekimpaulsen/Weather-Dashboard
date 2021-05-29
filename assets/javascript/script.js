@@ -1,4 +1,3 @@
-var searchBtn = $("#search-button");
 var inputEl = $(".form-control");
 var cityName = ""
 var searchHistory = JSON.parse(localStorage.getItem("search"));
@@ -8,7 +7,7 @@ if(!searchHistory){
   generateHistory();
 }
 
-searchBtn.on("click", searchCity)
+$("#search-button").on("click", searchCity)
 
 // Search Function
 function searchCity() {
@@ -19,7 +18,8 @@ function searchCity() {
     $(".hide").removeAttr("hidden");
     generateHistory();
 }
- 
+
+// Fetch the API
 function getWeather(cityName) {
      var currentDayURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=de7012882f4c3c7eb567c8837eb90a14";
      fetch(currentDayURL)
@@ -55,7 +55,8 @@ function getWeather(cityName) {
           
           callUV(data.coord.lat, data.coord.lon);
       })
-
+    
+    // 5days Forecast
     var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=imperial&appid=de7012882f4c3c7eb567c8837eb90a14";
     fetch(forecastURL)
      .then(function(response) {
@@ -89,7 +90,7 @@ function getWeather(cityName) {
      })
 }
 
-// UV Index
+// Get UV Index
 function callUV(lat, lon) {
     var uvURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=de7012882f4c3c7eb567c8837eb90a14"
     fetch(uvURL)
@@ -123,6 +124,7 @@ function callUV(lat, lon) {
 
 }
 
+// Generates Search History
 function generateHistory(){
     $("#history").html("");
     for(i = 0; i < searchHistory.length; i++){
@@ -132,11 +134,13 @@ function generateHistory(){
     }
 }
 
+// Click to Get the Result Again
 $("#history").on("click", "li", function() {
     $(".hide").removeAttr("hidden");
     getWeather($(this).text());
 })
 
+// Clears Local Storage
 $("#clear-button").on("click", function(){
     localStorage.clear();
 })

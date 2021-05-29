@@ -55,3 +55,7 @@ h5 {
   background-color: purple;
   border-color: purple;
 }
+
+#currentWeather {
+  margin-bottom: 15px;
+}
