@@ -1,9 +1,9 @@
 var inputEl = $(".form-control");
-var cityName = ""
 var searchHistory = JSON.parse(localStorage.getItem("search"));
-if(!searchHistory){
+if(!searchHistory) {
   var searchHistory = [];
-}else{
+}
+else {
   generateHistory();
 }
 
@@ -34,22 +34,18 @@ function getWeather(cityName) {
           var windSpeed = document.createElement("p")
           var currentDate = moment().format("l")
 
-          $(currentTitle).attr("id", "city-name")
-          .addClass("city-name align-middle")
+          $(currentTitle).addClass("city-name align-middle")
           .html(data.name + " (" + currentDate + ")")
 
           $(weatherIcon).addClass("weather-icon")
           .attr("src", "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png")
           .attr("alt", data.weather[0].description);
 
-          $(temperature).attr("id", "temperature")
-          .html("Temperature: " + data.main.temp + "°F");
+          $(temperature).html("Temperature: " + data.main.temp + "°F");
           
-          $(humidity).attr("id", "humidity")
-          .html("Humidity: " + data.main.humidity + "%");
+          $(humidity).html("Humidity: " + data.main.humidity + "%");
 
-          $(windSpeed).attr("id", "wind-speed")
-          .html("Wind speed: " + data.wind.speed + "MPH");
+          $(windSpeed).html("Wind speed: " + data.wind.speed + "MPH");
 
           $("#currentWeather").addClass("white-card").html("").append(currentTitle, weatherIcon, temperature, windSpeed, humidity)
           
@@ -77,16 +73,19 @@ function getWeather(cityName) {
              var windSpeed = document.createElement("p")
 
              $(forecastDates).html(futureDates)
+
              $(weatherIcon).addClass("icon-small")
              .attr("src", "http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + ".png")
              .attr("alt", data.list[i].weather[0].description);
+
              $(temperature).html("Temp: " + data.list[i].main.temp + "°F")
+
              $(humidity).html("Humidity: " + data.list[i].main.humidity + "%")
+
              $(windSpeed).html("Wind: " + data.list[i].wind.speed + "MPH")
+
              card.append(card, forecastDates, weatherIcon, temperature, humidity, windSpeed)
-
          }
-
      })
 }
 
@@ -121,11 +120,10 @@ function callUV(lat, lon) {
         $("#currentWeather").append(uvEl)
         uvEl.append(uvColor)
      })
-
 }
 
 // Generates Search History
-function generateHistory(){
+function generateHistory() {
     $("#history").html("");
     for(i = 0; i < searchHistory.length; i++){
       var historyEl = document.createElement("li")
@@ -134,7 +132,7 @@ function generateHistory(){
     }
 }
 
-// Click to Get the Result Again
+// Click to Get the Search Result Again
 $("#history").on("click", "li", function() {
     $(".hide").removeAttr("hidden");
     getWeather($(this).text());

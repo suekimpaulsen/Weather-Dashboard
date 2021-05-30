@@ -1,54 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Weather Dashboard</title>
-</head>
-<header class="jumbotron jumbotron-fluid bg-secondary text-light">
-    <h1 class="text-center">Weather DashBoard</h1>
-</header>
-<body>
-  
-      <!-- Main body -->
-    <main class="container">
-        <section class="row">
-            <!-- Search API -->
-            <div class="col-12 col-md-3">
-                <h2>Search for a city:</h2>
-                <!-- Search & Clear Button -->
-                <div class="input-group my-3">
-                    <input type="text" class="form-control">
-                <div class="input-group-append">
-                    <button class="btn btn-primary searchBtn" id="search-button"><i class="fas fa-search"></i></button>
-                    <button class="btn btn-primary clearBtn" id="clear-button"><i Class="fas fa-trash-alt"></i></button>
-
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+        <link rel="stylesheet" href="./assets/css/style.css">
+        <title>Weather Dashboard</title>
+    </head>
+    <body>
+        <header class="jumbotron jumbotron-fluid bg-secondary text-light">
+            <h1 class="text-center">Weather DashBoard</h1>
+        </header>    
+        <!-- Main body -->
+        <main class="container">
+            <section class="row">
+                <!-- Search API -->
+                <div class="col-12 col-md-3">
+                    <h2>Search for a city:</h2>
+                    <!-- Search & Clear Button -->
+                    <div class="input-group my-3">
+                        <input type="text" class="form-control">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary searchBtn" id="search-button"><i class="fas fa-search"></i></button>
+                            <button class="btn btn-primary clearBtn" id="clear-button"><i Class="fas fa-trash-alt"></i></button>
+                        </div>
+                    </div>
+                    <!-- Search History -->
+                    <ul class="list-group mb-3" id="history"></ul>
                 </div>
+                <!-- Result Container -->
+                <div class="col-12 col-md-8">
+                    <div class="row" id="result-container">
+                        <!-- Today's weather -->
+                        <div class="container" id="currentWeather"></div>
+                        <!-- 5-Day Forecast -->
+                        <h4 class="hide" hidden="true">5-Day Forecast: </h4>
+                        <div class="container row justify-content-around card-deck" id="forecast"></div>
+                    </div>
                 </div>
-                <!-- Search History -->
-                <ul class="list-group mb-3" id="history">
-                </ul>
-            </div>
-
-            <div class="col-12 col-md-8">
-                <div class="row" id="result-container">
-                    <!-- Today's weather -->
-                    <div class="container" id="currentWeather"></div>
-                    <!-- 5-Day Forecast -->
-                    <h4 class="hide" hidden="true">5-Day Forecast: </h4>
-                    <div class="container row justify-content-around card-deck" id="forecast"></div>
-                </div>
-
-            </div>
-        </section>
-    </main>
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
-    <script src="./assets/javascript/script.js"></script>
-</body>
+            </section>
+        </main>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+        <script src="./assets/javascript/script.js"></script>
+    </body>
 </html>
